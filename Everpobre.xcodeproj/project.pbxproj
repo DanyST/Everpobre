@@ -21,6 +21,10 @@
 		935B5759218F683A005557F7 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B5758218F683A005557F7 /* Date+Utils.swift */; };
 		935B575B218F78D5005557F7 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B575A218F78D5005557F7 /* CoreDataStack.swift */; };
 		935B575E218F7EC9005557F7 /* Everpobre.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 935B575C218F7EC9005557F7 /* Everpobre.xcdatamodeld */; };
+		935B5763218F8545005557F7 /* Notebook+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B575F218F8545005557F7 /* Notebook+CoreDataClass.swift */; };
+		935B5764218F8545005557F7 /* Notebook+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B5760218F8545005557F7 /* Notebook+CoreDataProperties.swift */; };
+		935B5765218F8545005557F7 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B5761218F8545005557F7 /* Note+CoreDataClass.swift */; };
+		935B5766218F8545005557F7 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B5762218F8545005557F7 /* Note+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		935B5758218F683A005557F7 /* Date+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
 		935B575A218F78D5005557F7 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		935B575D218F7EC9005557F7 /* Everpobre.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Everpobre.xcdatamodel; sourceTree = "<group>"; };
+		935B575F218F8545005557F7 /* Notebook+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notebook+CoreDataClass.swift"; sourceTree = "<group>"; };
+		935B5760218F8545005557F7 /* Notebook+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notebook+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		935B5761218F8545005557F7 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
+		935B5762218F8545005557F7 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,10 @@
 		9345AE3F218EC7A3003F7E17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				935B575F218F8545005557F7 /* Notebook+CoreDataClass.swift */,
+				935B5760218F8545005557F7 /* Notebook+CoreDataProperties.swift */,
+				935B5761218F8545005557F7 /* Note+CoreDataClass.swift */,
+				935B5762218F8545005557F7 /* Note+CoreDataProperties.swift */,
 				9345AE40218EC7B0003F7E17 /* deprecated_Notebook.swift */,
 				9345AE42218ED0F6003F7E17 /* deprecated_Note.swift */,
 			);
@@ -204,12 +216,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				9345AE43218ED0F6003F7E17 /* deprecated_Note.swift in Sources */,
+				935B5766218F8545005557F7 /* Note+CoreDataProperties.swift in Sources */,
+				935B5763218F8545005557F7 /* Notebook+CoreDataClass.swift in Sources */,
 				935B5753218EE3B0005557F7 /* NoteDetailViewController.swift in Sources */,
 				935B575E218F7EC9005557F7 /* Everpobre.xcdatamodeld in Sources */,
 				9345AE3E218EC625003F7E17 /* NotebookViewCell.swift in Sources */,
 				935B575B218F78D5005557F7 /* CoreDataStack.swift in Sources */,
 				9345AE47218ED217003F7E17 /* NoteListViewController.swift in Sources */,
+				935B5765218F8545005557F7 /* Note+CoreDataClass.swift in Sources */,
 				9345AE3C218EAFF6003F7E17 /* NotebookListViewController.swift in Sources */,
+				935B5764218F8545005557F7 /* Notebook+CoreDataProperties.swift in Sources */,
 				935B5759218F683A005557F7 /* Date+Utils.swift in Sources */,
 				9345AE41218EC7B0003F7E17 /* deprecated_Notebook.swift in Sources */,
 				9345AE29218EAC32003F7E17 /* AppDelegate.swift in Sources */,
