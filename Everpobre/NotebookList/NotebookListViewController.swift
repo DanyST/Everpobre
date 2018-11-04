@@ -53,3 +53,16 @@ extension NotebookListViewController: UITableViewDataSource {
     
     
 }
+
+// MARK: - UITableViewDelegate
+extension NotebookListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // obtenemos el modelo
+        let notebook = model[indexPath.row]
+        
+        // mostramos el controlador de notas
+        let noteListViewController = NoteListViewController(notebook: notebook)
+        self.show(noteListViewController, sender: nil)
+    }
+}
