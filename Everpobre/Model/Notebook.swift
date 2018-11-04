@@ -9,6 +9,8 @@
 import Foundation
 
 struct Notebook {
+    
+    // MARK: - Properties
     let name: String
     let creationDate: Date
     
