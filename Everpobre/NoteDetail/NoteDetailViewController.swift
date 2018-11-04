@@ -11,7 +11,7 @@ import UIKit
 class NoteDetailViewController: UIViewController {
     
     // MARK: - Properties
-    let model: Note
+    let model: deprecated_Note
     
     // Mark - Outlets
     @IBOutlet weak var imageView: UIImageView!
@@ -22,7 +22,7 @@ class NoteDetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UITextView!
     
     // MARK: - Initialization
-    init(model: Note) {
+    init(model: deprecated_Note) {
         // Nos encargamos de nuestras propias propieades
         self.model = model
         

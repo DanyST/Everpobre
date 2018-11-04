@@ -12,7 +12,7 @@ import CoreData
 class NotebookListViewController: UIViewController {
 
     // MARK: - Properties
-    var model: [Notebook] = [] {
+    var model: [deprecated_Notebook] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -28,7 +28,7 @@ class NotebookListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.model = Notebook.dummyNotebookModel
+        self.model = deprecated_Notebook.dummyNotebookModel
     }
 }
 

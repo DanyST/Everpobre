@@ -18,16 +18,16 @@ class NoteListViewController: UIViewController {
         return tableView
     }()
     
-    var model: [Note] = [] {
+    var model: [deprecated_Note] = [] {
         didSet {
             self.tableView.reloadData()
         }
     }
     
-    let notebook: Notebook
+    let notebook: deprecated_Notebook
     
     // MARK: - Initialization
-    init(notebook: Notebook) {
+    init(notebook: deprecated_Notebook) {
         // Nos encargamos de nuestras propias propiedades
         self.notebook = notebook
         
@@ -96,6 +96,6 @@ extension NoteListViewController: UITableViewDelegate {
         // mostramos el NoteDetailViewcontroller
         let noteDetailViewController = NoteDetailViewController(model: note)
         
-        self.show(noteDetailViewController, sender: nil)                
+        self.show(noteDetailViewController, sender: nil)
     }
 }

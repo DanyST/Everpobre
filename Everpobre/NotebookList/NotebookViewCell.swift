@@ -21,7 +21,7 @@ class NotebookViewCell: UITableViewCell {
     }
     
     // MARK: - Configure cell with Notebook
-    func configure(with notebook: Notebook) {
+    func configure(with notebook: deprecated_Notebook) {
         self.titleLabel.text = notebook.name
         self.creationDateLabel.text = "Create \(notebook.creationDate.creationStringLabel())"
     }
