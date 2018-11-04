@@ -12,13 +12,22 @@ import CoreData
 class NotebookListViewController: UIViewController {
 
     // MARK: - Properties
-    var model: [deprecated_Notebook] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+//    var model: [deprecated_Notebook] = [] {
+//        didSet {
+//            tableView.reloadData()
+//        }
+//    }
     
     var managedContext: NSManagedObjectContext!
+    
+    var dataSource: [NSManagedObject] {
+        do {
+            return try managedContext.fetch(Notebook.fetchRequest())
+        }catch let error as NSError {
+            print(error.localizedDescription)
+            return []
+        }
+    }
     
     // Mark - Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -28,7 +37,12 @@ class NotebookListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.model = deprecated_Notebook.dummyNotebookModel
+//        self.model = deprecated_Notebook.dummyNotebookModel
+    }
+    
+    // MARK: - IBActions
+    @IBAction func addNotebook(_ sender: UIBarButtonItem) {
+        
     }
 }
 
@@ -36,13 +50,13 @@ class NotebookListViewController: UIViewController {
 extension NotebookListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.count
+        return dataSource.count//model.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Obtenemos el modelo
-        let notebook = model[indexPath.row]
+        let notebook = dataSource[indexPath.row] as! Notebook
         
         // Creamos la celda(o nos dan por caché)
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotebookListCell", for: indexPath) as! NotebookViewCell
@@ -62,10 +76,10 @@ extension NotebookListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // obtenemos el modelo
-        let notebook = model[indexPath.row]
-        
-        // mostramos el controlador de notas
-        let noteListViewController = NoteListViewController(notebook: notebook)
-        self.show(noteListViewController, sender: nil)
+//        let notebook = model[indexPath.row]
+//
+//        // mostramos el controlador de notas
+//        let noteListViewController = NoteListViewController(notebook: notebook)
+//        self.show(noteListViewController, sender: nil)
     }
 }

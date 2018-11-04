@@ -86,7 +86,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Notebooks" id="9fu-oa-0hb"/>
+                    <navigationItem key="navigationItem" title="Notebooks" id="9fu-oa-0hb">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="aib-MR-wh4">
+                            <connections>
+                                <action selector="addNotebook:" destination="BYZ-38-t0r" id="qaW-LK-4Fj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="97D-2f-sxa" id="rqq-y8-wpH"/>
                     </connections>
