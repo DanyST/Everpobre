@@ -49,7 +49,15 @@ class NoteListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.navigationController?.navigationBar.isTranslucent = false
+        
         self.title = "Notes"
+        
+        // Creamos el boton
+        let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNote))
+        
+        // Añadimos el boton
+        self.navigationItem.rightBarButtonItem = addButtonItem
         
         setupTableView()
     }
@@ -66,6 +74,14 @@ class NoteListViewController: UIViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+    }
+    
+    // MARK: - Actions
+    @objc func addNote() {
+        let newNoteViewController = NoteDetailViewController(kind: .new)
+        let navViewController = UINavigationController(rootViewController: newNoteViewController)
+        
+        self.present(navViewController, animated: true, completion: nil)
     }
 }
 
@@ -98,7 +114,7 @@ extension NoteListViewController: UITableViewDelegate {
         let note = self.model[indexPath.row]
         
         // mostramos el NoteDetailViewcontroller
-        let noteDetailViewController = NoteDetailViewController(model: note)
+        let noteDetailViewController = NoteDetailViewController(kind: .existing(note))
         
         self.show(noteDetailViewController, sender: nil)
     }

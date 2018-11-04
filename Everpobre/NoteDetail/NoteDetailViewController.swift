@@ -12,7 +12,7 @@ class NoteDetailViewController: UIViewController {
     
     // Mark - Outlets
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tagsLabel: UILabel!
     @IBOutlet weak var creationDateLabel: UILabel!
     @IBOutlet weak var lastSeenDateLabel: UILabel!
@@ -69,7 +69,7 @@ class NoteDetailViewController: UIViewController {
     func configureValues() {
         self.title = kind.title
         
-        self.titleLabel.text = kind.note?.title
+        self.titleTextField.text = kind.note?.title
         //        self.tagsLabel.text = self.model.tags?.joined(separator: ",")
         self.creationDateLabel.text = "Create \((kind.note?.creationDate as Date?)?.creationStringLabel() ?? "ND")"
         self.lastSeenDateLabel.text = "Seen \((kind.note?.lastSeenDate as Date?)?.creationStringLabel() ?? "Never")"
