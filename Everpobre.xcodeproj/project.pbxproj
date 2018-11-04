@@ -12,6 +12,8 @@
 		9345AE30218EAC35003F7E17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9345AE2F218EAC35003F7E17 /* Assets.xcassets */; };
 		9345AE33218EAC35003F7E17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9345AE31218EAC35003F7E17 /* LaunchScreen.storyboard */; };
 		9345AE3C218EAFF6003F7E17 /* NotebookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9345AE3B218EAFF6003F7E17 /* NotebookListViewController.swift */; };
+		9345AE3E218EC625003F7E17 /* NotebookViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9345AE3D218EC625003F7E17 /* NotebookViewCell.swift */; };
+		9345AE41218EC7B0003F7E17 /* Notebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9345AE40218EC7B0003F7E17 /* Notebook.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		9345AE32218EAC35003F7E17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9345AE34218EAC35003F7E17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9345AE3B218EAFF6003F7E17 /* NotebookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookListViewController.swift; sourceTree = "<group>"; };
+		9345AE3D218EC625003F7E17 /* NotebookViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookViewCell.swift; sourceTree = "<group>"; };
+		9345AE40218EC7B0003F7E17 /* Notebook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notebook.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 		9345AE27218EAC32003F7E17 /* Everpobre */ = {
 			isa = PBXGroup;
 			children = (
+				9345AE3F218EC7A3003F7E17 /* Model */,
 				9345AE3A218EAF33003F7E17 /* NotebookList */,
 				9345AE28218EAC32003F7E17 /* AppDelegate.swift */,
 				9345AE2C218EAC32003F7E17 /* Main.storyboard */,
@@ -68,8 +73,17 @@
 			isa = PBXGroup;
 			children = (
 				9345AE3B218EAFF6003F7E17 /* NotebookListViewController.swift */,
+				9345AE3D218EC625003F7E17 /* NotebookViewCell.swift */,
 			);
 			path = NotebookList;
+			sourceTree = "<group>";
+		};
+		9345AE3F218EC7A3003F7E17 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9345AE40218EC7B0003F7E17 /* Notebook.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +157,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9345AE3E218EC625003F7E17 /* NotebookViewCell.swift in Sources */,
 				9345AE3C218EAFF6003F7E17 /* NotebookListViewController.swift in Sources */,
+				9345AE41218EC7B0003F7E17 /* Notebook.swift in Sources */,
 				9345AE29218EAC32003F7E17 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
