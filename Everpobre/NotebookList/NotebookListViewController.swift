@@ -124,10 +124,10 @@ extension NotebookListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // obtenemos el modelo
-//        let notebook = model[indexPath.row]
+        let notebook = dataSource[indexPath.row] as! Notebook
 //
 //        // mostramos el controlador de notas
-//        let noteListViewController = NoteListViewController(notebook: notebook)
-//        self.show(noteListViewController, sender: nil)
+        let noteListViewController = NoteListViewController(notebook: notebook)
+        self.show(noteListViewController, sender: nil)
     }
 }

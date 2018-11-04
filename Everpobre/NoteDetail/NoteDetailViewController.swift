@@ -11,7 +11,7 @@ import UIKit
 class NoteDetailViewController: UIViewController {
     
     // MARK: - Properties
-    let model: deprecated_Note
+    let model: Note//deprecated_Note
     
     // Mark - Outlets
     @IBOutlet weak var imageView: UIImageView!
@@ -22,7 +22,7 @@ class NoteDetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UITextView!
     
     // MARK: - Initialization
-    init(model: deprecated_Note) {
+    init(model: Note) {
         // Nos encargamos de nuestras propias propieades
         self.model = model
         
@@ -45,9 +45,9 @@ class NoteDetailViewController: UIViewController {
     func syncModelWithView() {
         self.title = "Detail"
         self.titleLabel.text = self.model.title
-        self.tagsLabel.text = self.model.tags?.joined(separator: ",")
-        self.creationDateLabel.text = "Create \(self.model.creationDate.creationStringLabel())"
-        self.lastSeenDateLabel.text = "Seen \(self.model.lastSeenDate?.creationStringLabel() ?? "Never")"
+//        self.tagsLabel.text = self.model.tags?.joined(separator: ",")
+        self.creationDateLabel.text = "Create \((self.model.creationDate as Date?)?.creationStringLabel() ?? "ND")"
+        self.lastSeenDateLabel.text = "Seen \((self.model.lastSeenDate as Date?)?.creationStringLabel() ?? "Never")"
         self.descriptionLabel.text = self.model.text ?? "Type a text..."
     }
     

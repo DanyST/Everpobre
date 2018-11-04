@@ -18,16 +18,22 @@ class NoteListViewController: UIViewController {
         return tableView
     }()
     
-    var model: [deprecated_Note] = [] {
-        didSet {
-            self.tableView.reloadData()
-        }
+//    var model: [deprecated_Note] = [] {
+//        didSet {
+//            self.tableView.reloadData()
+//        }
+//    }
+    
+    var model: [Note] {
+        guard let model = notebook.notes?.array else { return [] }
+        
+        return model as! [Note]
     }
     
-    let notebook: deprecated_Notebook
+    let notebook: Notebook //deprecated_Notebook
     
     // MARK: - Initialization
-    init(notebook: deprecated_Notebook) {
+    init(notebook: Notebook) {
         // Nos encargamos de nuestras propias propiedades
         self.notebook = notebook
         
@@ -43,11 +49,9 @@ class NoteListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Notes from: \(self.notebook.name)"
+        self.title = "Notes"
         
         setupTableView()
-        
-        self.model = notebook.notes
     }
     
     // MARK: - Setup TableView
