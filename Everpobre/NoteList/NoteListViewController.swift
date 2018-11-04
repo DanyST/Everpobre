@@ -53,6 +53,7 @@ class NoteListViewController: UIViewController {
     // MARK: - Setup TableView
     func setupTableView() {
         self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         view.addSubview(self.tableView)
         
@@ -64,6 +65,7 @@ class NoteListViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension NoteListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.model.count
@@ -81,5 +83,19 @@ extension NoteListViewController: UITableViewDataSource {
         
         // devolvemos la celda
         return cell
+    }
+}
+
+
+// MARK: - UITableViewDelegate
+extension NoteListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // averiguamos de que modelo se trata
+        let note = self.model[indexPath.row]
+        
+        // mostramos el NoteDetailViewcontroller
+        let noteDetailViewController = NoteDetailViewController(model: note)
+        
+        self.show(noteDetailViewController, sender: nil)                
     }
 }
