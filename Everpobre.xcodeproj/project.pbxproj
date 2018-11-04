@@ -19,6 +19,7 @@
 		935B5753218EE3B0005557F7 /* NoteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B5751218EE3B0005557F7 /* NoteDetailViewController.swift */; };
 		935B5754218EE3B0005557F7 /* NoteDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 935B5752218EE3B0005557F7 /* NoteDetailViewController.xib */; };
 		935B5759218F683A005557F7 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B5758218F683A005557F7 /* Date+Utils.swift */; };
+		935B575B218F78D5005557F7 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B575A218F78D5005557F7 /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		935B5751218EE3B0005557F7 /* NoteDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailViewController.swift; sourceTree = "<group>"; };
 		935B5752218EE3B0005557F7 /* NoteDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteDetailViewController.xib; sourceTree = "<group>"; };
 		935B5758218F683A005557F7 /* Date+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
+		935B575A218F78D5005557F7 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				935B5758218F683A005557F7 /* Date+Utils.swift */,
+				935B575A218F78D5005557F7 /* CoreDataStack.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				9345AE43218ED0F6003F7E17 /* Note.swift in Sources */,
 				935B5753218EE3B0005557F7 /* NoteDetailViewController.swift in Sources */,
 				9345AE3E218EC625003F7E17 /* NotebookViewCell.swift in Sources */,
+				935B575B218F78D5005557F7 /* CoreDataStack.swift in Sources */,
 				9345AE47218ED217003F7E17 /* NoteListViewController.swift in Sources */,
 				9345AE3C218EAFF6003F7E17 /* NotebookListViewController.swift in Sources */,
 				935B5759218F683A005557F7 /* Date+Utils.swift in Sources */,
