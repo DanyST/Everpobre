@@ -95,7 +95,28 @@ extension NotebookListViewController: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let notebookToRemove = dataSource[indexPath.row] as? Notebook,
+            editingStyle == .delete
+        else { return }
+        
+        // send notebook to remove
+        self.managedContext.delete(notebookToRemove)
+        
+        // save managed Context
+        do {
+          try self.managedContext.save()
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        } catch let error as NSError {
+            print("Error: \(error.localizedDescription)")
+        }
+        
+        self.tableView.reloadData()
+    }
 }
 
 // MARK: - UITableViewDelegate
