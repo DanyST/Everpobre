@@ -19,4 +19,20 @@ class NotebookViewCell: UITableViewCell {
         titleLabel.text = nil
         creationDateLabel.text = nil
     }
+    
+    // MARK: - Configure cell with Notebook
+    func configure(with notebook: Notebook) {
+        self.titleLabel.text = notebook.name
+        self.creationDateLabel.text = self.creationString(from: notebook.creationDate)
+    }
+    
+    // MARK: - Utils
+    private func creationString(from date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale(identifier: "en_US")
+        
+        return "Create \(dateFormatter.string(from: date))"
+    }
 }
