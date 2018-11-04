@@ -9,6 +9,8 @@
 import Foundation
 
 struct Note {
+    
+    // MARK: - Properties
     let title: String
     let text: String?
     let tags: [String]?
