@@ -1,0 +1,30 @@
+//
+//  NotebookListViewController.swift
+//  Everpobre
+//
+//  Created by Luis Herrera Lillo on 04-11-18.
+//  Copyright © 2018 Luis Herrera Lillo. All rights reserved.
+//
+
+import UIKit
+
+class NotebookListViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
