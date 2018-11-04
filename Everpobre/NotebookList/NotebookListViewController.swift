@@ -42,7 +42,34 @@ class NotebookListViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func addNotebook(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "New Notebook", message: "Add a new Notebook", preferredStyle: .alert)
         
+        let saveAction = UIAlertAction(title: "Save", style: .default) { [unowned self] action in
+            guard let textField = alert.textFields?.first,
+                let nameToSave = textField.text else { return }
+            
+            // create notebook
+            let notebook = Notebook(context: self.managedContext)
+            notebook.name = nameToSave
+            notebook.creationDate = NSDate()
+            
+            // save notebook data
+            do {
+                try self.managedContext.save()
+            } catch let error as NSError {
+                print("TODO Error handling")
+            }
+            
+            self.tableView.reloadData()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addTextField()
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true)
     }
 }
 
