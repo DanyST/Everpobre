@@ -14,6 +14,7 @@
 		9345AE3C218EAFF6003F7E17 /* NotebookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9345AE3B218EAFF6003F7E17 /* NotebookListViewController.swift */; };
 		9345AE3E218EC625003F7E17 /* NotebookViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9345AE3D218EC625003F7E17 /* NotebookViewCell.swift */; };
 		9345AE41218EC7B0003F7E17 /* Notebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9345AE40218EC7B0003F7E17 /* Notebook.swift */; };
+		9345AE43218ED0F6003F7E17 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9345AE42218ED0F6003F7E17 /* Note.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		9345AE3B218EAFF6003F7E17 /* NotebookListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookListViewController.swift; sourceTree = "<group>"; };
 		9345AE3D218EC625003F7E17 /* NotebookViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookViewCell.swift; sourceTree = "<group>"; };
 		9345AE40218EC7B0003F7E17 /* Notebook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notebook.swift; sourceTree = "<group>"; };
+		9345AE42218ED0F6003F7E17 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				9345AE40218EC7B0003F7E17 /* Notebook.swift */,
+				9345AE42218ED0F6003F7E17 /* Note.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9345AE43218ED0F6003F7E17 /* Note.swift in Sources */,
 				9345AE3E218EC625003F7E17 /* NotebookViewCell.swift in Sources */,
 				9345AE3C218EAFF6003F7E17 /* NotebookListViewController.swift in Sources */,
 				9345AE41218EC7B0003F7E17 /* Notebook.swift in Sources */,
