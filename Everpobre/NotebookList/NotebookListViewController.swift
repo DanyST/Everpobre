@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class NotebookListViewController: UIViewController {
 
@@ -16,6 +17,8 @@ class NotebookListViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    
+    var managedContext: NSManagedObjectContext!
     
     // Mark - Outlets
     @IBOutlet weak var tableView: UITableView!
