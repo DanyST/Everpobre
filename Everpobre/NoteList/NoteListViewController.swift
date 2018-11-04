@@ -18,7 +18,7 @@ class NoteListViewController: UIViewController {
         return tableView
     }()
     
-    var notes: [Note] = [] {
+    var model: [Note] = [] {
         didSet {
             self.tableView.reloadData()
         }
@@ -47,7 +47,7 @@ class NoteListViewController: UIViewController {
         
         setupTableView()
         
-        self.notes = notebook.notes
+        self.model = notebook.notes
     }
     
     // MARK: - Setup TableView
@@ -61,5 +61,25 @@ class NoteListViewController: UIViewController {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+    }
+}
+
+extension NoteListViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.model.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Obtenemos el modelo
+        let note = self.model[indexPath.row]
+        
+        // creamos la celda
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "NoteCell")
+        
+        // sincronizamos modelo y vista
+        cell.textLabel?.text = note.title
+        
+        // devolvemos la celda
+        return cell
     }
 }
