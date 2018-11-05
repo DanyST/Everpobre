@@ -77,56 +77,78 @@ class NoteDetailViewController: UIViewController {
         self.creationDateLabel.text = "Create \((kind.note?.creationDate as Date?)?.creationStringLabel() ?? "ND")"
         self.lastSeenDateLabel.text = "Seen \((kind.note?.lastSeenDate as Date?)?.creationStringLabel() ?? "Never")"
         self.descriptionLabel.text = kind.note?.text ?? "Type a text..."
+        
+        guard let data = kind.note?.image as Data? else {
+            self.imageView.image = UIImage(named: "placeholder")
+            return
+        }
+        
+        self.imageView.image = UIImage(data: data)
     }
     
     
     // MARK: - Actions
     @objc private func saveNote() {
-        switch kind {
-        case .existing(let note):
-            
-            // editamos la nota
+        
+        func addProperties(to note: Note) -> Note {
             note.title = self.titleTextField.text
             note.text = self.descriptionLabel.text
-            note.lastSeenDate = NSDate()
             
-            // Guardamos la nota
+            var imageData: NSData?
+            
+            if let image = self.imageView.image,
+                let data = image.pngData() {
+                imageData = NSData(data: data)
+                note.image = imageData
+            } else {
+                imageData = nil
+            }
+            
+            return note
+        }
+        
+        func saveManagedContext(with note: Note) {
             do {
                 try managedContext.save()
                 self.delegate?.noteDetailViewController(self, didSaveNote: note)
             } catch let error as NSError {
                 print("Error: \(error.localizedDescription)")
             }
+        }
+        
+        switch kind {
+        case .existing(let note):
             
-            // Nos devolvemos al controller anterior
+            // editamos la nota
+            let modifiedNote = addProperties(to: note)
+            modifiedNote.lastSeenDate = NSDate()
+            
+            // Guardamos la nota
+            saveManagedContext(with: modifiedNote)
+            
+            // Volvemos al controller anterior
             self.navigationController?.popViewController(animated: true)
             
         case .new(let notebook):
             
             // Creamos la nota
             let note = Note(context: self.managedContext)
-            note.title = self.titleTextField.text
-            note.text = self.descriptionLabel.text
-            note.creationDate = NSDate()
-            note.notebook = notebook
+            let modifiedNote = addProperties(to: note)
+            modifiedNote.creationDate = NSDate()
+            modifiedNote.notebook = notebook
             
             // Añadimos la nota al Notebook
             if let notes = notebook.notes?.mutableCopy() as? NSMutableOrderedSet {
-                notes.add(note)
+                notes.add(modifiedNote)
                 notebook.notes = notes
             }
             
             // Guardamos la nota
-            do {
-                try managedContext.save()
-                self.delegate?.noteDetailViewController(self, didSaveNote: note)
-            } catch let error as NSError {
-                print("Error: \(error.localizedDescription)")
-            }
+            saveManagedContext(with: modifiedNote)
             
             // Cerramos la modal
             self.dismiss(animated: true)
-            
+
         }
     }
     
