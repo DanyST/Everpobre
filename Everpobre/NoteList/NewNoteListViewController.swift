@@ -88,6 +88,21 @@ extension NewNoteListViewController: UICollectionViewDataSource {
     
 }
 
+extension NewNoteListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // averiguamos de que modelo se trata
+        let note = self.model[indexPath.row]
+        
+        // mostramos el NoteDetailViewcontroller
+        let noteDetailViewController = NoteDetailViewController(kind: .existing(note: note), managedContext: self.managedContext)
+        
+        // Nos conformamos al delegado de noteDetailViewController
+        noteDetailViewController.delegate = self
+        
+        self.show(noteDetailViewController, sender: nil)
+    }
+}
+
 // MARK: - UICollectionViewDelegateFlowLayout
 extension NewNoteListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
