@@ -204,8 +204,19 @@ extension NotebookListViewController: UISearchResultsUpdating {
     }
     
     private func showAll() {
+        
+        let asyncFetchRequest = NSAsynchronousFetchRequest(fetchRequest: Notebook.fetchRequest()) { [weak self] result in
+            guard let notebooks = result.finalResult else {
+                self?.dataSource = []
+                return
+            }
+            
+            self?.dataSource = notebooks
+        }
+        
         do {
-            self.dataSource = try managedContext.fetch(Notebook.fetchRequest())
+//            self.dataSource = try managedContext.fetch(asyncFetchRequest)
+            try self.managedContext.execute(asyncFetchRequest)
         } catch let error as NSError {
             print("Could not fetch \(error.localizedDescription)")
             self.dataSource = []
