@@ -25,6 +25,10 @@
 		935B5772218F95B7005557F7 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B576E218F95B7005557F7 /* Note+CoreDataProperties.swift */; };
 		935B5777218FA1F1005557F7 /* Notebook+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B5775218FA1F1005557F7 /* Notebook+CoreDataClass.swift */; };
 		935B5778218FA1F1005557F7 /* Notebook+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B5776218FA1F1005557F7 /* Notebook+CoreDataProperties.swift */; };
+		935B577B219018B0005557F7 /* NewNoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B5779219018B0005557F7 /* NewNoteListViewController.swift */; };
+		935B577C219018B0005557F7 /* NewNoteListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 935B577A219018B0005557F7 /* NewNoteListViewController.xib */; };
+		935B577F21901DC0005557F7 /* NoteListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B577D21901DC0005557F7 /* NoteListCollectionViewCell.swift */; };
+		935B578021901DC0005557F7 /* NoteListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 935B577E21901DC0005557F7 /* NoteListCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,10 @@
 		935B576E218F95B7005557F7 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		935B5775218FA1F1005557F7 /* Notebook+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notebook+CoreDataClass.swift"; sourceTree = "<group>"; };
 		935B5776218FA1F1005557F7 /* Notebook+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notebook+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		935B5779219018B0005557F7 /* NewNoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteListViewController.swift; sourceTree = "<group>"; };
+		935B577A219018B0005557F7 /* NewNoteListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewNoteListViewController.xib; sourceTree = "<group>"; };
+		935B577D21901DC0005557F7 /* NoteListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListCollectionViewCell.swift; sourceTree = "<group>"; };
+		935B577E21901DC0005557F7 /* NoteListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteListCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +129,10 @@
 			isa = PBXGroup;
 			children = (
 				9345AE46218ED217003F7E17 /* NoteListViewController.swift */,
+				935B5779219018B0005557F7 /* NewNoteListViewController.swift */,
+				935B577A219018B0005557F7 /* NewNoteListViewController.xib */,
+				935B577D21901DC0005557F7 /* NoteListCollectionViewCell.swift */,
+				935B577E21901DC0005557F7 /* NoteListCollectionViewCell.xib */,
 			);
 			path = NoteList;
 			sourceTree = "<group>";
@@ -202,8 +214,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9345AE33218EAC35003F7E17 /* LaunchScreen.storyboard in Resources */,
+				935B577C219018B0005557F7 /* NewNoteListViewController.xib in Resources */,
 				935B5754218EE3B0005557F7 /* NoteDetailViewController.xib in Resources */,
 				9345AE30218EAC35003F7E17 /* Assets.xcassets in Resources */,
+				935B578021901DC0005557F7 /* NoteListCollectionViewCell.xib in Resources */,
 				9345AE2E218EAC32003F7E17 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,7 +237,9 @@
 				935B575E218F7EC9005557F7 /* Everpobre.xcdatamodeld in Sources */,
 				9345AE3E218EC625003F7E17 /* NotebookViewCell.swift in Sources */,
 				935B575B218F78D5005557F7 /* CoreDataStack.swift in Sources */,
+				935B577F21901DC0005557F7 /* NoteListCollectionViewCell.swift in Sources */,
 				9345AE47218ED217003F7E17 /* NoteListViewController.swift in Sources */,
+				935B577B219018B0005557F7 /* NewNoteListViewController.swift in Sources */,
 				935B5771218F95B7005557F7 /* Note+CoreDataClass.swift in Sources */,
 				9345AE3C218EAFF6003F7E17 /* NotebookListViewController.swift in Sources */,
 				935B5759218F683A005557F7 /* Date+Utils.swift in Sources */,
