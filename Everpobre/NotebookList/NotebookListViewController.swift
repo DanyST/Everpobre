@@ -18,7 +18,8 @@ class NotebookListViewController: UIViewController {
 //        }
 //    }
     
-    var managedContext: NSManagedObjectContext!
+//    var managedContext: NSManagedObjectContext!
+    var coreDataStack: CoreDataStack!
     
 //    var dataSource: [NSManagedObject] = [] {
 //        didSet {
@@ -52,7 +53,7 @@ class NotebookListViewController: UIViewController {
         
         fetchRequest.fetchBatchSize = 20
         
-        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedContext, sectionNameKeyPath: #keyPath(Notebook.creationDate), cacheName: nil)
+        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.coreDataStack.managedContext, sectionNameKeyPath: #keyPath(Notebook.creationDate), cacheName: nil)
     }
     
     // Se hace uno nuevo para que la tabla observe el actual NSFetchedResultsController con los nuevos valores
@@ -109,7 +110,7 @@ class NotebookListViewController: UIViewController {
         fetchRequest.predicate = predicate
         
         do {
-            let countResult = try managedContext.fetch(fetchRequest)
+            let countResult = try self.coreDataStack.managedContext.fetch(fetchRequest)
             let count = countResult.first?.stringValue
             totalLabel.text = count
         } catch let error as NSError {
@@ -127,13 +128,13 @@ class NotebookListViewController: UIViewController {
                 let nameToSave = textField.text else { return }
             
             // create notebook
-            let notebook = Notebook(context: self.managedContext)
+            let notebook = Notebook(context: self.coreDataStack.managedContext)
             notebook.name = nameToSave
             notebook.creationDate = NSDate()
             
             // save notebook data
             do {
-                try self.managedContext.save()
+                try self.coreDataStack.managedContext.save()
             } catch let error as NSError {
                 print("TODO Error handling")
             }
@@ -197,11 +198,11 @@ extension NotebookListViewController: UITableViewDataSource {
         let notebookToRemove = self.fetchResultsController.object(at: indexPath)
         
         // send notebook to remove
-        self.managedContext.delete(notebookToRemove)
+        self.coreDataStack.managedContext.delete(notebookToRemove)
         
         // save managed Context
         do {
-          try self.managedContext.save()
+          try self.coreDataStack.managedContext.save()
             //tableView.deleteRows(at: [indexPath], with: .automatic)
         } catch let error as NSError {
             print("Error: \(error.localizedDescription)")
@@ -223,7 +224,7 @@ extension NotebookListViewController: UITableViewDelegate {
         // mostramos el controlador de notas
 //        let noteListViewController = NoteListViewController(notebook: notebook, managedContext: self.managedContext)
         
-        let noteListViewController = NewNoteListViewController(notebook: notebook, managedContext: self.managedContext)
+        let noteListViewController = NewNoteListViewController(notebook: notebook, coreDataStack: self.coreDataStack)
 
         self.show(noteListViewController, sender: nil)
     }

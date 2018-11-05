@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let viewController = navController.topViewController as? NotebookListViewController else { return true}
         
         // Injectar CoreData Stack al ViewController
-        viewController.managedContext = coreDataStack.managedContext
+        viewController.coreDataStack = coreDataStack
         
         return true
     }
