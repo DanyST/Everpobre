@@ -25,6 +25,8 @@ class NewNoteListViewController: UIViewController {
 //    let managedContext: NSManagedObjectContext
     let coreDataStack: CoreDataStack!
     
+    let transition = Animator()
+    
     // MARK: - Initialization
     init(notebook: Notebook, coreDataStack: CoreDataStack) {
         self.notebook = notebook
@@ -171,7 +173,12 @@ extension NewNoteListViewController: UICollectionViewDelegate {
         // Nos conformamos al delegado de noteDetailViewController
         noteDetailViewController.delegate = self
         
-        self.show(noteDetailViewController, sender: nil)
+        // self.show(noteDetailViewController, sender: nil)
+        
+        // custom animtation
+        let navVC = UINavigationController(rootViewController: noteDetailViewController)
+        navVC.transitioningDelegate = self
+        self.present(navVC, animated: true, completion: nil)
     }
 }
 
@@ -187,5 +194,16 @@ extension NewNoteListViewController: NoteDetailViewControllerDelegate {
     func noteDetailViewController(_ vc: NoteDetailViewController, didSaveNote note: Note) {
         // Core Data actualiza automagicamente las notas
         self.model = (notebook.notes?.array as? [Note]) ?? []
+    }
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+extension NewNoteListViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return nil
     }
 }

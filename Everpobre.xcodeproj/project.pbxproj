@@ -32,6 +32,7 @@
 		935B578D2190C5FD005557F7 /* UIImage+ReSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B578A2190C5FC005557F7 /* UIImage+ReSize.swift */; };
 		935B578E2190C5FD005557F7 /* UIImage+Alpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B578B2190C5FC005557F7 /* UIImage+Alpha.swift */; };
 		935B578F2190C5FD005557F7 /* UIImage+RoundCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B578C2190C5FD005557F7 /* UIImage+RoundCorner.swift */; };
+		935B57912190DAF3005557F7 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B57902190DAF3005557F7 /* Animator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		935B578A2190C5FC005557F7 /* UIImage+ReSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+ReSize.swift"; sourceTree = "<group>"; };
 		935B578B2190C5FC005557F7 /* UIImage+Alpha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Alpha.swift"; sourceTree = "<group>"; };
 		935B578C2190C5FD005557F7 /* UIImage+RoundCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+RoundCorner.swift"; sourceTree = "<group>"; };
+		935B57902190DAF3005557F7 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				9345AE31218EAC35003F7E17 /* LaunchScreen.storyboard */,
 				9345AE34218EAC35003F7E17 /* Info.plist */,
 				935B575C218F7EC9005557F7 /* Everpobre.xcdatamodeld */,
+				935B57902190DAF3005557F7 /* Animator.swift */,
 			);
 			path = Everpobre;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				935B57912190DAF3005557F7 /* Animator.swift in Sources */,
 				9345AE43218ED0F6003F7E17 /* deprecated_Note.swift in Sources */,
 				935B578D2190C5FD005557F7 /* UIImage+ReSize.swift in Sources */,
 				935B5778218FA1F1005557F7 /* Notebook+CoreDataProperties.swift in Sources */,
