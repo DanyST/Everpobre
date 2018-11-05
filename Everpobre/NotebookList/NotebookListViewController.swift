@@ -41,7 +41,7 @@ class NotebookListViewController: UIViewController {
         self.showAll()
     }
     
-    // MARK: - getFetchResultsController
+    // MARK: - FetchResultsController - Utils
     func getFetchResultsController(with predicate: NSPredicate = NSPredicate(value: true)) -> NSFetchedResultsController<Notebook> {
         
         let fetchRequest: NSFetchRequest<Notebook> = Notebook.fetchRequest()
@@ -53,6 +53,26 @@ class NotebookListViewController: UIViewController {
         fetchRequest.fetchBatchSize = 20
         
         return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedContext, sectionNameKeyPath: nil, cacheName: nil)
+    }
+    
+    // Se hace uno nuevo para que la tabla observe el actual NSFetchedResultsController con los nuevos valores
+    // EL FRC se queda con los valores estaticos observados, entonces cuando lo cambiamos, sigue observando
+    // los valores anterior, por lo que hay que 'setearlo'
+    private func setNewFetchResultsController(_ newfrc: NSFetchedResultsController<Notebook>) {
+        let oldfrc = self.fetchResultsController
+        
+        if oldfrc != newfrc {
+            self.fetchResultsController = newfrc
+            newfrc.delegate = self
+            
+            do {
+                try self.fetchResultsController.performFetch()
+            } catch let error as NSError {
+                print("Could not fetch \(error.localizedDescription)")
+            }
+            
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: - ReloadView
@@ -69,6 +89,7 @@ class NotebookListViewController: UIViewController {
 //        tableView.reloadData()
 //    }
     
+    // MARK: - configureSearchController
     func configureSearchController() {
         let search = UISearchController(searchResultsController: nil)
         search.searchResultsUpdater = self
@@ -225,6 +246,13 @@ extension NotebookListViewController: UISearchResultsUpdating {
 //        }
 //
 //        populateTotalLabel(with: predicate)
+        
+        let predicate = NSPredicate(format: "name CONTAINS[c] %@", query)
+        let frc = getFetchResultsController(with: predicate)
+        
+        setNewFetchResultsController(frc)
+        
+        populateTotalLabel(with: predicate)
     }
     
     private func showAll() {
@@ -247,8 +275,8 @@ extension NotebookListViewController: UISearchResultsUpdating {
 //        }
         
         // Actualizamos el fetchResultsController por cada busqueda de SearchController
-        fetchResultsController = getFetchResultsController()
-        fetchResultsController.delegate = self
+        let frc = getFetchResultsController()
+        setNewFetchResultsController(frc)
         
         do {
             try self.fetchResultsController.performFetch()
@@ -261,7 +289,27 @@ extension NotebookListViewController: UISearchResultsUpdating {
 }
 
 extension NotebookListViewController: NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.reloadData()
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.beginUpdates()
     }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch type {
+        case .insert:
+            self.tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        case .delete:
+            self.tableView.deleteRows(at: [indexPath!], with: .automatic)
+        default:
+            break
+            
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.endUpdates()
+    }
+    
+   
 }
