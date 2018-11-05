@@ -25,10 +25,16 @@ class NoteListViewController: UIViewController {
 //        }
 //    }
     
+//    var model: [Note] {
+//        guard let model = notebook.notes?.array else { return [] }
+//
+//        return model as! [Note]
+//    }
+    
     var model: [Note] {
-        guard let model = notebook.notes?.array else { return [] }
-        
-        return model as! [Note]
+        didSet {
+            tableView.reloadData()
+        }
     }
     
     let notebook: Notebook //deprecated_Notebook
@@ -38,7 +44,9 @@ class NoteListViewController: UIViewController {
     init(notebook: Notebook, managedContext: NSManagedObjectContext) {
         // Nos encargamos de nuestras propias propiedades
         self.notebook = notebook
+        self.model = (notebook.notes?.array as? [Note]) ?? []
         self.managedContext = managedContext
+
         
         // llamamos a super
         super.init(nibName: nil, bundle: nil)
@@ -51,8 +59,6 @@ class NoteListViewController: UIViewController {
     // Mark - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.navigationController?.navigationBar.isTranslucent = false
         
         self.title = "Notes"
         
@@ -67,9 +73,12 @@ class NoteListViewController: UIViewController {
     
     // MARK: - Setup TableView
     func setupTableView() {
+        
+        // Añadimos delegados
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
+        // Añadimos tableView a la vista
         view.addSubview(self.tableView)
         
         // Add contrains
@@ -83,6 +92,9 @@ class NoteListViewController: UIViewController {
     @objc func addNote() {
         let newNoteViewController = NoteDetailViewController(kind: .new(notebook: self.notebook), managedContext: self.managedContext)
         let navViewController = UINavigationController(rootViewController: newNoteViewController)
+        
+        // Nos conformamos al delegado de noteDetailViewController
+        newNoteViewController.delegate = self
         
         self.present(navViewController, animated: true, completion: nil)
     }
@@ -119,6 +131,17 @@ extension NoteListViewController: UITableViewDelegate {
         // mostramos el NoteDetailViewcontroller
         let noteDetailViewController = NoteDetailViewController(kind: .existing(note: note), managedContext: self.managedContext)
         
+        // Nos conformamos al delegado de noteDetailViewController
+        noteDetailViewController.delegate = self
+        
         self.show(noteDetailViewController, sender: nil)
+    }
+}
+
+// MARK: - NoteDetailViewControllerDelegate
+extension NoteListViewController: NoteDetailViewControllerDelegate {
+    func noteDetailViewController(_ vc: NoteDetailViewController, didSaveNote note: Note) {
+        // Core Data actualiza automagicamente las notas
+        self.model = (notebook.notes?.array as? [Note]) ?? []
     }
 }

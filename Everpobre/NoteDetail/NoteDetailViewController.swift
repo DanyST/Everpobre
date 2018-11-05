@@ -61,17 +61,11 @@ class NoteDetailViewController: UIViewController {
     func configure(with kind: Kind) {
         switch kind {
         case .new:
-            
-            // Creamos los botones
-            let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveNote))
-            let cancelButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-            
-            // Añadimos los botones al navigationItem
-            self.navigationItem.rightBarButtonItem = saveButtonItem
-            self.navigationItem.leftBarButtonItem = cancelButtonItem
+            addSaveAndCancelButtons()
             
         case .existing:
             configureValues()
+            addSaveAndCancelButtons()
         }
     }
     
@@ -83,6 +77,17 @@ class NoteDetailViewController: UIViewController {
         self.creationDateLabel.text = "Create \((kind.note?.creationDate as Date?)?.creationStringLabel() ?? "ND")"
         self.lastSeenDateLabel.text = "Seen \((kind.note?.lastSeenDate as Date?)?.creationStringLabel() ?? "Never")"
         self.descriptionLabel.text = kind.note?.text ?? "Type a text..."
+    }
+    
+    // MARK: - Utils
+    func addSaveAndCancelButtons() {
+        // Creamos los botones
+        let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveNote))
+        let cancelButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+        
+        // Añadimos los botones al navigationItem
+        self.navigationItem.rightBarButtonItem = saveButtonItem
+        self.navigationItem.leftBarButtonItem = cancelButtonItem
     }
     
     // MARK: - Actions

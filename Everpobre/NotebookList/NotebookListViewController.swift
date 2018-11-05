@@ -20,24 +20,52 @@ class NotebookListViewController: UIViewController {
     
     var managedContext: NSManagedObjectContext!
     
-    var dataSource: [NSManagedObject] {
-        do {
-            return try managedContext.fetch(Notebook.fetchRequest())
-        }catch let error as NSError {
-            print(error.localizedDescription)
-            return []
-        }
-    }
+    var dataSource: [NSManagedObject] = []
     
     // Mark - Outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var totalLabel: UILabel!
     
     
     // Mark - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.model = deprecated_Notebook.dummyNotebookModel
+        // self.model = deprecated_Notebook.dummyNotebookModel
+        
+        self.reloadView()
+    }
+    
+    // MARK: - ReloadView
+    func reloadView() {
+        
+        do {
+            dataSource = try managedContext.fetch(Notebook.fetchRequest())
+        }catch let error as NSError {
+            print(error.localizedDescription)
+            dataSource = []
+        }
+        
+        self.populateTotalLabel()
+        tableView.reloadData()
+    }
+    
+    // MARK: - Utils
+    func populateTotalLabel() {
+        let fetchRequest = NSFetchRequest<NSNumber>(entityName: "Notebook")
+        fetchRequest.resultType = .countResultType
+        
+        let predicate = NSPredicate(value: true)
+        fetchRequest.predicate = predicate
+        
+        do {
+            let countResult = try managedContext.fetch(fetchRequest)
+            let count = countResult.first?.stringValue
+            totalLabel.text = count
+        } catch let error as NSError {
+            print("Count not fetch: \(error.localizedDescription)")
+        }
+        
     }
     
     // MARK: - IBActions
@@ -60,7 +88,7 @@ class NotebookListViewController: UIViewController {
                 print("TODO Error handling")
             }
             
-            self.tableView.reloadData()
+            self.reloadView()
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -110,12 +138,12 @@ extension NotebookListViewController: UITableViewDataSource {
         // save managed Context
         do {
           try self.managedContext.save()
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            //tableView.deleteRows(at: [indexPath], with: .automatic)
         } catch let error as NSError {
             print("Error: \(error.localizedDescription)")
         }
         
-        self.tableView.reloadData()
+        self.reloadView()
     }
 }
 
