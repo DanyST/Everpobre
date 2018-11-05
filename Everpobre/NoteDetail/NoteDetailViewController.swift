@@ -180,7 +180,12 @@ class NoteDetailViewController: UIViewController {
     }
     
     private func takePhotoWithCamera() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .camera
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         
+        self.present(imagePicker, animated: true)
     }
     
     
@@ -211,9 +216,36 @@ extension NoteDetailViewController: UIImagePickerControllerDelegate, UINavigatio
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        // Obtenemos la imagen
-        let rawImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
-        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            
+            func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+                return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+            }
+            
+            func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+                return input.rawValue
+            }
+            
+            let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+            
+            let rawImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage
+            
+            let imageSize = CGSize(width: self.imageView.bounds.width * UIScreen.main.scale, height: self.imageView.bounds.height * UIScreen.main.scale)
+            
+            DispatchQueue.global(qos: .default).async {
+                let image = rawImage?.resizedImageWithContentMode(.scaleAspectFill, bounds: imageSize, interpolationQuality: .high)
+                
+                DispatchQueue.main.async {
+                    if let image = image {
+                        self.imageView.contentMode = .scaleAspectFill
+                        self.imageView.clipsToBounds = true
+                        self.imageView.image = image
+                    }
+                }
+            }
+            
+            dismiss(animated: true, completion: nil)
+        }
         
     }
 }
