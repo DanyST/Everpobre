@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class NoteListViewController: UIViewController {
     
@@ -31,11 +32,13 @@ class NoteListViewController: UIViewController {
     }
     
     let notebook: Notebook //deprecated_Notebook
+    let managedContext: NSManagedObjectContext
     
     // MARK: - Initialization
-    init(notebook: Notebook) {
+    init(notebook: Notebook, managedContext: NSManagedObjectContext) {
         // Nos encargamos de nuestras propias propiedades
         self.notebook = notebook
+        self.managedContext = managedContext
         
         // llamamos a super
         super.init(nibName: nil, bundle: nil)
@@ -78,7 +81,7 @@ class NoteListViewController: UIViewController {
     
     // MARK: - Actions
     @objc func addNote() {
-        let newNoteViewController = NoteDetailViewController(kind: .new)
+        let newNoteViewController = NoteDetailViewController(kind: .new(notebook: self.notebook), managedContext: self.managedContext)
         let navViewController = UINavigationController(rootViewController: newNoteViewController)
         
         self.present(navViewController, animated: true, completion: nil)
@@ -114,7 +117,7 @@ extension NoteListViewController: UITableViewDelegate {
         let note = self.model[indexPath.row]
         
         // mostramos el NoteDetailViewcontroller
-        let noteDetailViewController = NoteDetailViewController(kind: .existing(note))
+        let noteDetailViewController = NoteDetailViewController(kind: .existing(note: note), managedContext: self.managedContext)
         
         self.show(noteDetailViewController, sender: nil)
     }

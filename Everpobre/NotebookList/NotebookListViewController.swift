@@ -127,7 +127,7 @@ extension NotebookListViewController: UITableViewDelegate {
         let notebook = dataSource[indexPath.row] as! Notebook
         
         // mostramos el controlador de notas
-        let noteListViewController = NoteListViewController(notebook: notebook)
+        let noteListViewController = NoteListViewController(notebook: notebook, managedContext: self.managedContext)
         self.show(noteListViewController, sender: nil)
     }
 }
