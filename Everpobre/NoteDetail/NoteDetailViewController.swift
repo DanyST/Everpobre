@@ -61,11 +61,11 @@ class NoteDetailViewController: UIViewController {
     func configure(with kind: Kind) {
         switch kind {
         case .new:
-            addSaveAndCancelButtons()
+            addSaveAndCancelButtonsInNav()
             
         case .existing:
             configureValues()
-            addSaveAndCancelButtons()
+            addSaveAndCancelButtonsInNav()
         }
     }
     
@@ -79,16 +79,6 @@ class NoteDetailViewController: UIViewController {
         self.descriptionLabel.text = kind.note?.text ?? "Type a text..."
     }
     
-    // MARK: - Utils
-    func addSaveAndCancelButtons() {
-        // Creamos los botones
-        let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveNote))
-        let cancelButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
-        
-        // Añadimos los botones al navigationItem
-        self.navigationItem.rightBarButtonItem = saveButtonItem
-        self.navigationItem.leftBarButtonItem = cancelButtonItem
-    }
     
     // MARK: - Actions
     @objc private func saveNote() {
@@ -144,6 +134,56 @@ class NoteDetailViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    @IBAction func pickImage(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            self.showPhotoMenu()
+        }else {
+            self.choosePhotoFromLibrary()
+        }
+    }
+    
+    // MARK: - Utils
+    func addSaveAndCancelButtonsInNav() {
+        // Creamos los botones
+        let saveButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveNote))
+        let cancelButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+        
+        // Añadimos los botones al navigationItem
+        self.navigationItem.rightBarButtonItem = saveButtonItem
+        self.navigationItem.leftBarButtonItem = cancelButtonItem
+    }
+    
+    private func showPhotoMenu() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let takePhotoAction = UIAlertAction(title: "Take Photo", style: .default) { _ in
+            self.takePhotoWithCamera()
+        }
+        let chooseFromLibrary = UIAlertAction(title: "Choose From Library", style: .default) { _ in
+            self.choosePhotoFromLibrary()
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(takePhotoAction)
+        alertController.addAction(chooseFromLibrary)
+        
+        self.present(alertController, animated: true)
+    }
+    
+    private func choosePhotoFromLibrary() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        
+        self.present(imagePicker, animated: true)
+    }
+    
+    private func takePhotoWithCamera() {
+        
+    }
+    
+    
 }
 
 // MARK: - NoteDetailViewController.Kind Extension
@@ -160,5 +200,20 @@ private extension NoteDetailViewController.Kind {
         case .new:
             return "New Note"
         }
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+extension NoteDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        // Obtenemos la imagen
+        let rawImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+        
+        
     }
 }
