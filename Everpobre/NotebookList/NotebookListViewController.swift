@@ -20,7 +20,11 @@ class NotebookListViewController: UIViewController {
     
     var managedContext: NSManagedObjectContext!
     
-    var dataSource: [NSManagedObject] = []
+    var dataSource: [NSManagedObject] = [] {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     
     // Mark - Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -31,9 +35,8 @@ class NotebookListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // self.model = deprecated_Notebook.dummyNotebookModel
-        
-        self.reloadView()
+        self.configureSearchController()
+        self.showAll()
     }
     
     // MARK: - ReloadView
@@ -50,12 +53,22 @@ class NotebookListViewController: UIViewController {
         tableView.reloadData()
     }
     
+    func configureSearchController() {
+        let search = UISearchController(searchResultsController: nil)
+        search.searchResultsUpdater = self
+        
+        search.obscuresBackgroundDuringPresentation = false
+        search.searchBar.placeholder = "Search Notebook"
+        self.navigationItem.searchController = search
+        self.navigationItem.hidesSearchBarWhenScrolling = true
+        self.definesPresentationContext = true
+    }
+    
     // MARK: - Utils
-    func populateTotalLabel() {
+    func populateTotalLabel(with predicate: NSPredicate = NSPredicate(value: true)) {
         let fetchRequest = NSFetchRequest<NSNumber>(entityName: "Notebook")
         fetchRequest.resultType = .countResultType
         
-        let predicate = NSPredicate(value: true)
         fetchRequest.predicate = predicate
         
         do {
@@ -88,7 +101,8 @@ class NotebookListViewController: UIViewController {
                 print("TODO Error handling")
             }
             
-            self.reloadView()
+            //self.reloadView()
+            self.showAll()
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -143,7 +157,8 @@ extension NotebookListViewController: UITableViewDataSource {
             print("Error: \(error.localizedDescription)")
         }
         
-        self.reloadView()
+//        self.reloadView()
+        self.showAll()
     }
 }
 
@@ -158,4 +173,46 @@ extension NotebookListViewController: UITableViewDelegate {
         let noteListViewController = NoteListViewController(notebook: notebook, managedContext: self.managedContext)
         self.show(noteListViewController, sender: nil)
     }
+}
+
+extension NotebookListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let text = searchController.searchBar.text, !text.isEmpty {
+            // mostramos resultados filtrados
+            self.showFilteredResults(with: text)
+        } else {
+            // mostramos todos los resultados
+            self.showAll()
+        }
+    }
+    
+    private func showFilteredResults(with query: String) {
+        let fetchRequest = NSFetchRequest<Notebook>(entityName: "Notebook")
+        fetchRequest.resultType = .managedObjectResultType
+        
+        let predicate = NSPredicate(format: "name CONTAINS[c] %@", query)
+        fetchRequest.predicate = predicate
+        
+        do {
+            self.dataSource = try managedContext.fetch(fetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch \(error.localizedDescription)")
+            self.dataSource = []
+        }
+        
+        populateTotalLabel(with: predicate)
+    }
+    
+    private func showAll() {
+        do {
+            self.dataSource = try managedContext.fetch(Notebook.fetchRequest())
+        } catch let error as NSError {
+            print("Could not fetch \(error.localizedDescription)")
+            self.dataSource = []
+        }
+        
+        populateTotalLabel()
+    }
+    
+    
 }
