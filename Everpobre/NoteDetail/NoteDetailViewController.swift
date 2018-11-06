@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 protocol NoteDetailViewControllerDelegate: class {
     func noteDetailViewController(_ vc: NoteDetailViewController, didSaveNote note: Note)
@@ -36,6 +37,10 @@ class NoteDetailViewController: UIViewController {
     
     weak var delegate: NoteDetailViewControllerDelegate?
     
+    let locationManager = CLLocationManager()
+    
+    var currentLocation: CLLocationCoordinate2D?
+    
     // MARK: - Initialization
     init(kind: Kind, managedContext: NSManagedObjectContext) {
         // Nos encargamos de nuestras propias propieades
@@ -50,9 +55,14 @@ class NoteDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // Mark - Life Cycle
+    // Mark: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.requestLocation()
         
         self.configure(with: self.kind)
     }
@@ -136,6 +146,14 @@ class NoteDetailViewController: UIViewController {
             let modifiedNote = addProperties(to: note)
             modifiedNote.creationDate = NSDate()
             modifiedNote.notebook = notebook
+            
+            if let theLocation = self.currentLocation {
+                let location = Location(context: self.managedContext)
+                location.latitude = theLocation.latitude
+                location.longitude = theLocation.longitude
+                
+                modifiedNote.location = location
+            }                                    
             
             // Añadimos la nota al Notebook
             if let notes = notebook.notes?.mutableCopy() as? NSMutableOrderedSet {
@@ -265,5 +283,18 @@ extension NoteDetailViewController: UIImagePickerControllerDelegate, UINavigatio
         }
             
         self.dismiss(animated: true)
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+extension NoteDetailViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            self.currentLocation = location.coordinate
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error: \(error.localizedDescription)")
     }
 }

@@ -44,6 +44,7 @@ class NewNoteListViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Notes"
+        
         self.view.backgroundColor = .white
         
         // Añadimos los delegados
@@ -62,6 +63,7 @@ class NewNoteListViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItems = [addButtonItem, exportButtonItem]
     }
+    
     
     // MARK: - Actions
     @objc private func exportCSV() {

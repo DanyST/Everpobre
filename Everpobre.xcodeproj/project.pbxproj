@@ -35,6 +35,10 @@
 		935B579E219127D0005557F7 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B579B219127D0005557F7 /* Note+CoreDataProperties.swift */; };
 		935B57A521912AE2005557F7 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B57A321912AE2005557F7 /* Location+CoreDataClass.swift */; };
 		935B57A621912AE2005557F7 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B57A421912AE2005557F7 /* Location+CoreDataProperties.swift */; };
+		935B57A921913309005557F7 /* NoteMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B57A721913309005557F7 /* NoteMapViewController.swift */; };
+		935B57AA21913309005557F7 /* NoteMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 935B57A821913309005557F7 /* NoteMapViewController.xib */; };
+		935B57AD21915F46005557F7 /* SwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935B57AB21915F46005557F7 /* SwitchViewController.swift */; };
+		935B57AE21915F46005557F7 /* SwitchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 935B57AC21915F46005557F7 /* SwitchViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +74,10 @@
 		935B579B219127D0005557F7 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		935B57A321912AE2005557F7 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		935B57A421912AE2005557F7 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		935B57A721913309005557F7 /* NoteMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteMapViewController.swift; sourceTree = "<group>"; };
+		935B57A821913309005557F7 /* NoteMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteMapViewController.xib; sourceTree = "<group>"; };
+		935B57AB21915F46005557F7 /* SwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewController.swift; sourceTree = "<group>"; };
+		935B57AC21915F46005557F7 /* SwitchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +158,10 @@
 				935B577A219018B0005557F7 /* NewNoteListViewController.xib */,
 				935B577D21901DC0005557F7 /* NoteListCollectionViewCell.swift */,
 				935B577E21901DC0005557F7 /* NoteListCollectionViewCell.xib */,
+				935B57A721913309005557F7 /* NoteMapViewController.swift */,
+				935B57A821913309005557F7 /* NoteMapViewController.xib */,
+				935B57AB21915F46005557F7 /* SwitchViewController.swift */,
+				935B57AC21915F46005557F7 /* SwitchViewController.xib */,
 			);
 			path = NoteList;
 			sourceTree = "<group>";
@@ -235,7 +247,9 @@
 			files = (
 				9345AE33218EAC35003F7E17 /* LaunchScreen.storyboard in Resources */,
 				935B577C219018B0005557F7 /* NewNoteListViewController.xib in Resources */,
+				935B57AE21915F46005557F7 /* SwitchViewController.xib in Resources */,
 				935B5754218EE3B0005557F7 /* NoteDetailViewController.xib in Resources */,
+				935B57AA21913309005557F7 /* NoteMapViewController.xib in Resources */,
 				9345AE30218EAC35003F7E17 /* Assets.xcassets in Resources */,
 				935B578021901DC0005557F7 /* NoteListCollectionViewCell.xib in Resources */,
 				9345AE2E218EAC32003F7E17 /* Main.storyboard in Resources */,
@@ -255,6 +269,7 @@
 				9345AE43218ED0F6003F7E17 /* deprecated_Note.swift in Sources */,
 				935B578D2190C5FD005557F7 /* UIImage+ReSize.swift in Sources */,
 				935B5778218FA1F1005557F7 /* Notebook+CoreDataProperties.swift in Sources */,
+				935B57AD21915F46005557F7 /* SwitchViewController.swift in Sources */,
 				935B5753218EE3B0005557F7 /* NoteDetailViewController.swift in Sources */,
 				935B5777218FA1F1005557F7 /* Notebook+CoreDataClass.swift in Sources */,
 				935B575E218F7EC9005557F7 /* Everpobre.xcdatamodeld in Sources */,
@@ -262,6 +277,7 @@
 				935B575B218F78D5005557F7 /* CoreDataStack.swift in Sources */,
 				935B579E219127D0005557F7 /* Note+CoreDataProperties.swift in Sources */,
 				935B577F21901DC0005557F7 /* NoteListCollectionViewCell.swift in Sources */,
+				935B57A921913309005557F7 /* NoteMapViewController.swift in Sources */,
 				9345AE47218ED217003F7E17 /* NoteListViewController.swift in Sources */,
 				935B578E2190C5FD005557F7 /* UIImage+Alpha.swift in Sources */,
 				935B577B219018B0005557F7 /* NewNoteListViewController.swift in Sources */,

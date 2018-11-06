@@ -21,27 +21,32 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F1d-Te-YsR">
                         <rect key="frame" x="0.0" y="0.0" width="100" height="150"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.34999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="1V7-NG-YWp">
-                        <rect key="frame" x="0.0" y="62" width="100" height="26"/>
-                        <fontDescription key="fontDescription" name="AvenirNext-Heavy" family="Avenir Next" pointSize="19"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3kq-AY-YgM">
-                        <rect key="frame" x="27.5" y="128" width="45" height="22"/>
-                        <fontDescription key="fontDescription" name="AvenirNext-HeavyItalic" family="Avenir Next" pointSize="16"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="VyF-Ri-JJb">
+                        <rect key="frame" x="20" y="20" width="60" height="110"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.34999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="1V7-NG-YWp">
+                                <rect key="frame" x="8" y="0.0" width="44.5" height="48"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Heavy" family="Avenir Next" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3kq-AY-YgM">
+                                <rect key="frame" x="7.5" y="88" width="45" height="22"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-HeavyItalic" family="Avenir Next" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="3kq-AY-YgM" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="0Hy-2M-iaW"/>
-                <constraint firstItem="1V7-NG-YWp" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="97g-9J-XHw"/>
-                <constraint firstItem="1V7-NG-YWp" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="GcB-vn-ukO"/>
+                <constraint firstItem="VyF-Ri-JJb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="7ZM-uG-r8i"/>
+                <constraint firstAttribute="trailing" secondItem="VyF-Ri-JJb" secondAttribute="trailing" constant="20" id="IJV-JA-gMM"/>
                 <constraint firstAttribute="trailing" secondItem="F1d-Te-YsR" secondAttribute="trailing" id="Lun-Lv-fPb"/>
+                <constraint firstAttribute="bottom" secondItem="VyF-Ri-JJb" secondAttribute="bottom" constant="20" id="PKV-01-jAJ"/>
                 <constraint firstItem="F1d-Te-YsR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="QsO-tn-TTR"/>
-                <constraint firstItem="3kq-AY-YgM" firstAttribute="top" secondItem="1V7-NG-YWp" secondAttribute="bottom" constant="40" id="Z63-8B-MSg"/>
+                <constraint firstItem="VyF-Ri-JJb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="aIR-rB-nRb"/>
                 <constraint firstItem="F1d-Te-YsR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ups-R3-6QB"/>
                 <constraint firstAttribute="bottom" secondItem="F1d-Te-YsR" secondAttribute="bottom" id="vO3-t8-meG"/>
             </constraints>

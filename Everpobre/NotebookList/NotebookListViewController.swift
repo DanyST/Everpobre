@@ -151,6 +151,10 @@ class NotebookListViewController: UIViewController {
         
         self.present(alert, animated: true)
     }
+    
+    @IBAction func exportCSV(_ sender: Any) {
+        
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -225,8 +229,15 @@ extension NotebookListViewController: UITableViewDelegate {
 //        let noteListViewController = NoteListViewController(notebook: notebook, managedContext: self.managedContext)
         
         let noteListViewController = NewNoteListViewController(notebook: notebook, coreDataStack: self.coreDataStack)
-
-        self.show(noteListViewController, sender: nil)
+        
+        let noteMapViewController = NoteMapViewController(model: (notebook.notes?.array as? [Note]) ?? [])
+        
+        let tabBarViewController = UITabBarController()
+        tabBarViewController.viewControllers = [noteListViewController, noteMapViewController]
+        
+        let switchViewController = SwitchViewController(notebook: notebook, coreDataStack: coreDataStack)
+        
+        self.show(switchViewController, sender: nil)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

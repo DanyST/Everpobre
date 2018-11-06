@@ -9,6 +9,7 @@
 
 import Foundation
 import CoreData
+import MapKit
 
 @objc(Note)
 public class Note: NSManagedObject {
@@ -23,5 +24,11 @@ extension Note {
         let exportedCreationDate = (creationDate as Date?)?.creationStringLabel() ?? "ND"
         
         return "\(exportedCreationDate),\(exportedTitle),\(exportedText)"
+    }
+}
+
+extension Note: MKAnnotation {
+    public var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: location?.latitude ?? 0, longitude: location?.longitude ?? 0)
     }
 }
