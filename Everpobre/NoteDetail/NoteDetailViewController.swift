@@ -126,8 +126,8 @@ class NoteDetailViewController: UIViewController {
             // Guardamos la nota
             saveManagedContext(with: modifiedNote)
             
-            // Volvemos al controller anterior
-            self.navigationController?.popViewController(animated: true)
+            // Cerramos la modal
+            self.dismiss(animated: true)
             
         case .new(let notebook):
             

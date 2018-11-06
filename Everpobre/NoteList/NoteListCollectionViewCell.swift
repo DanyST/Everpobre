@@ -13,6 +13,7 @@ class NoteListCollectionViewCell: UICollectionViewCell {
     // Mark: - Outlets
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var creationDateLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
     // MARK: - Properties
     var item: Note!
@@ -25,9 +26,17 @@ class NoteListCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Methods
     func configure(with item: Note) {
-        backgroundColor = .red
+        backgroundColor = .white
         titleLabel.text = item.title
         creationDateLabel.text = (item.creationDate as Date?)?.creationStringLabel()
+        
+        guard let data = item.image as Data? else {
+            imageView.image = UIImage(named: "placeholder")
+            return
+        }
+        
+        imageView.image = UIImage(data: data)        
+        
     }
 
 }
