@@ -18,10 +18,12 @@ extension Note {
     }
 
     @NSManaged public var creationDate: NSDate?
+    @NSManaged public var image: NSData?
     @NSManaged public var lastSeenDate: NSDate?
     @NSManaged public var text: String?
     @NSManaged public var title: String?
-    @NSManaged public var image: NSData?
+    @NSManaged public var tags: String?
     @NSManaged public var notebook: Notebook?
+    @NSManaged public var location: Location?
 
 }
