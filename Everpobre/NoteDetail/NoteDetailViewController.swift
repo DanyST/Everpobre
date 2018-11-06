@@ -19,7 +19,7 @@ class NoteDetailViewController: UIViewController {
     // Mark - Outlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var tagsLabel: UILabel!
+    @IBOutlet weak var tagsTextField: UITextField!
     @IBOutlet weak var creationDateLabel: UILabel!
     @IBOutlet weak var lastSeenDateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UITextView!
@@ -83,7 +83,7 @@ class NoteDetailViewController: UIViewController {
         self.title = kind.title
         
         self.titleTextField.text = kind.note?.title
-        //        self.tagsLabel.text = self.model.tags?.joined(separator: ",")
+        self.tagsTextField.text = kind.note?.tags
         self.creationDateLabel.text = "Create \((kind.note?.creationDate as Date?)?.creationStringLabel() ?? "ND")"
         self.lastSeenDateLabel.text = "Seen \((kind.note?.lastSeenDate as Date?)?.creationStringLabel() ?? "Never")"
         self.descriptionLabel.text = kind.note?.text ?? "Type a text..."
@@ -103,6 +103,7 @@ class NoteDetailViewController: UIViewController {
         func addProperties(to note: Note) -> Note {
             note.title = self.titleTextField.text
             note.text = self.descriptionLabel.text
+            note.tags = self.tagsTextField.text
             
             var imageData: NSData?
             
