@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need access to your location for save notes with it</string>
 	<key>NSCameraUsageDescription</key>
 	<string>We need access to the camera so you can take a picture and save a note.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
