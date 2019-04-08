@@ -24,6 +24,8 @@ class NoteDetailViewController: UIViewController {
     @IBOutlet weak var lastSeenDateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UITextView!
     
+    @IBOutlet weak var creationDateTitle: UILabel!
+    @IBOutlet weak var lastSeenDateTitle: UILabel!
     // MARK: - Properties
     //let model: Note//deprecated_Note
     
@@ -72,6 +74,7 @@ class NoteDetailViewController: UIViewController {
         switch kind {
         case .new:
             addSaveAndCancelButtonsInNav()
+            hiddenDates()
             
         case .existing:
             configureValues()
@@ -79,7 +82,14 @@ class NoteDetailViewController: UIViewController {
         }
     }
     
-    func configureValues() {
+    private func hiddenDates() {
+        lastSeenDateLabel.isHidden = true
+        lastSeenDateTitle.isHidden = true
+        creationDateLabel.isHidden = true
+        creationDateTitle.isHidden = true
+    }
+    
+    private func configureValues() {
         self.title = kind.title
         
         self.titleTextField.text = kind.note?.title

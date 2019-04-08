@@ -12,5 +12,11 @@ import CoreData
 
 @objc(Notebook)
 public class Notebook: NSManagedObject {
-
+    
+    func csv() -> String {
+        let exportedName = name ?? "Without Name"
+        let exportedCreationDate = (creationDate as Date?)?.creationStringLabel() ?? "ND"
+        
+        return "\(exportedCreationDate),\(exportedName)"
+    }
 }

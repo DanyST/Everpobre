@@ -153,6 +153,51 @@ class NotebookListViewController: UIViewController {
     }
     
     @IBAction func exportCSV(_ sender: Any) {
+        let notebooks: [Notebook]? = fetchResultsController.fetchedObjects
+        
+        guard let notebookList = notebooks else { return }
+        
+        let exportPath = NSTemporaryDirectory() + "export.txt"
+        let exportURL = URL(fileURLWithPath: exportPath)
+        
+        FileManager.default.createFile(atPath: exportPath, contents: Data(), attributes: nil)
+        
+        var fileHandle: FileHandle?
+        
+        do {
+            fileHandle = try FileHandle(forWritingTo: exportURL)
+        } catch let error as NSError {
+            print("Error: \(error.localizedDescription)")
+            fileHandle = nil
+        }
+        
+        if let fileHandle = fileHandle {
+            
+            notebookList.forEach { notebook in
+                fileHandle.seekToEndOfFile()
+                
+                let notes = notebook.notes?.array as? [Note] ?? []
+                var noteTxt = ""
+                //notes.forEach { noteTxt.append(contentsOf: $0.csv()) }
+                noteTxt = notes.map { $0.csv() }.joined(separator: ", ")
+            
+                guard let csvData = ";\(notebook.csv()): \(noteTxt) ".data(using: .utf8,                                                allowLossyConversion: false)
+                    else { return }
+                fileHandle.write(csvData)
+            }
+            
+            fileHandle.closeFile()
+            
+            do {
+                let notebookTxt = try String(contentsOf: exportURL)
+                let items = [notebookTxt]
+                let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+                present(ac, animated: true)
+                
+            }catch let error {
+                print(error.localizedDescription)
+            }
+        }
         
     }
 }
